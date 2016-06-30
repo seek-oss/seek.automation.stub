@@ -24,7 +24,7 @@ namespace seek.automation.stub
             StopWatch = new Stopwatch();
             LocalPact = string.Format("PerformancePactFile-{0}.json", DateTime.Now.ToString("yyyyMMdd-hhmmssff"));
 
-            LocalisePact(pactUri, LocalPact);
+            SavePactLocally(pactUri, LocalPact);
         }
 
         public void Run(Action action, int iterations)
@@ -55,7 +55,7 @@ namespace seek.automation.stub
             ExecutionTime = StopWatch.Elapsed;
         }
 
-        private void LocalisePact(string pactUri, string localPactFileName)
+        private void SavePactLocally(string pactUri, string localPactFileName)
         {
             if (pactUri.StartsWith("http"))
             {

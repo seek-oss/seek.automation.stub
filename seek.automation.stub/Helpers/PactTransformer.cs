@@ -23,9 +23,9 @@ namespace seek.automation.stub
             _providerName = providerName;
         }
 
-        //Add an optional transformer for the request otherwise use the passthrough default.
-        //.WithTransformer((originalPath, request) => ....) 
-        //  Where originalPath is the current provider path for this service and request is the request body and payload.
+        // Add an optional transformer for the request otherwise use the passthrough default.
+        // .WithTransformer((originalPath, request) => ....) 
+        // Where originalPath is the current provider path for this service and request is the request body and payload.
         public PactTransformer<T> WithTransform(Func<string, T, T> transformer)
         {
             _transformer = transformer;
@@ -44,7 +44,7 @@ namespace seek.automation.stub
             get { return _interactions; }
         }
 
-        //Transform a pactfile to pass-through use in Stub to the redirected path
+        // Transform a pactfile to pass-through use in Stub to the redirected path
         public PactTransformer<T> RedirectFor(string pactFilename, string redirectPath)
         {
             var payload = Helper.GetPactViaBroker(pactFilename);

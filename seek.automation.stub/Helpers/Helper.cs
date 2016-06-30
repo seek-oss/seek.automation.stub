@@ -73,14 +73,12 @@ namespace seek.automation.stub
 
         private static bool RequestPathMatches(HttpListenerRequest request, ProviderServiceInteraction providerServiceInteraction)
         {
-            //compare base url
-            bool baseUrlMatches =
-                string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path,
-                    StringComparison.OrdinalIgnoreCase) == 0;
+            // Compare base url
+            bool baseUrlMatches = string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path, StringComparison.OrdinalIgnoreCase) == 0;
 
             if (baseUrlMatches)
             {
-                //compare query string
+                // Compare query string
                 if (string.IsNullOrEmpty(request.Url.Query))
                 {
                     return string.IsNullOrEmpty(providerServiceInteraction.Request.Query);
@@ -106,9 +104,7 @@ namespace seek.automation.stub
                 using (var reader = new StreamReader(bodyInputStream, request.ContentEncoding))
                 {
                     var body = reader.ReadToEnd();
-                    return request.ContentType == "application/json; charset=utf-8"
-                           ? JObject.Parse(body).ToString()
-                           : body;
+                    return request.ContentType == "application/json; charset=utf-8" ? JObject.Parse(body).ToString() : body;
                 }
             }
         }

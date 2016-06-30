@@ -8,6 +8,7 @@
   "interactions": [
     {
       "description": "a request for money",
+      "provider_state": "Dad has enough money",
       "request": {
         "method": "post",
         "path": "/please/give/me/some/money",
