@@ -46,7 +46,7 @@ namespace seek.automation.stub
         private HttpResponseMessage EchoCallback(int port, HttpListenerContext listenerContext)
         {
             _logger.Information("Echo simulation on port {0}...", port);
-
+            
             var payload = Helper.GetRequestPostData(listenerContext.Request);
             var response = new HttpResponseMessage
             {

@@ -90,7 +90,7 @@ Task("Create-Nuget-Package")
 					var nuGetPackSettings   = new NuGetPackSettings {
 									Id							= projectName,
 									Version						= version,
-									Title						= "Integration Test Stub Library",
+									Title						= "SEEK Pact Based Stub Library",
 									Authors						= new[] {"Behdad Darougheh"},
 									Owners						= new[] {"Notifications Stream"},
 									Description					= projectDescription,
@@ -117,7 +117,18 @@ Task("Publish-Nuget-Package")
 				{
 					if(TeamCity.IsRunningOnTeamCity)
 					{
-						Information("This is really implemented through the TeamCity templates. Please see the second step on the pipeline.");
+						Information("Publishing to Nuget.org...");
+
+						var apiKey = EnvironmentVariable("NUGET_ORG_API_KEY");
+						if(string.IsNullOrEmpty(apiKey)) {
+									throw new InvalidOperationException("Could not resolve MyGet API key.");
+						}
+
+						// Push the package
+						NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
+							Source = "https://www.nuget.org/api/v2/package",
+							ApiKey = apiKey
+						});
 					}
 					else
 					{
