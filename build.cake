@@ -79,7 +79,7 @@ Task("Run-Unit-Tests")
     .IsDependentOn("Build-Solution")
     .Does(() =>
 				{
-					XUnit2("src/**/bin/" + configuration + "/*.Tests.dll");
+					XUnit2(string.Format("{0}.tests/**/bin/{1}/*.Tests.dll", projectName, configuration));
 				}
 		 );
 

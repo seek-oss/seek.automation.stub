@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doco", "Doco", "{A0A4AEBE-2
 		ReleaseNotes.md = ReleaseNotes.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seek.automation.stub.tests", "seek.automation.stub.tests\seek.automation.stub.tests.csproj", "{DC481855-33EA-479B-8D75-89789264D670}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{CC875B1F-290B-4D64-8010-5D28D1522CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC875B1F-290B-4D64-8010-5D28D1522CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC875B1F-290B-4D64-8010-5D28D1522CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC481855-33EA-479B-8D75-89789264D670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC481855-33EA-479B-8D75-89789264D670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC481855-33EA-479B-8D75-89789264D670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC481855-33EA-479B-8D75-89789264D670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

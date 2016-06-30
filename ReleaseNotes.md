@@ -1,3 +1,6 @@
+### New in 0.0.7 (Released 2016/06/30)
+* Just added some tests
+
 ### New in 0.0.6 (Released 2016/06/30)
 * Disable the license temporarily
 
