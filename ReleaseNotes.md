@@ -1,3 +1,6 @@
+### New in 0.0.6 (Released 2016/06/30)
+* Disable the license temporarily
+
 ### New in 0.0.5 (Released 2016/06/30)
 * Minor update to license information
 
