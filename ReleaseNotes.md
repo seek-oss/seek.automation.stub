@@ -15,5 +15,4 @@
 * Changed the title of the nuget
 
 ### New in 0.0.1 (Released 2016/06/30)
-
 * First publish

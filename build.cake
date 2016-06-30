@@ -99,7 +99,7 @@ Task("Create-Nuget-Package")
 									Copyright					= "Copyright 2015",
 									ReleaseNotes				= new [] {"Integration", "Pact"},
 									Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
-									RequireLicenseAcceptance	= true,        
+									RequireLicenseAcceptance	= false,        
 									Files						= new [] {
 																			new NuSpecContent {Source = string.Format("bin/release/{0}.dll", projectName), Target = "lib/net45"},
 																		 },
