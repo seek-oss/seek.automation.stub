@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id></id>
+    <version></version>
+    <authors>Behdad Darougheh</authors>
+    <owners>SEEK</owners>
+    <summary>A pact based stubbing library</summary>
+    <projectUrl></projectUrl>
+    <requireLicenseAcceptance></requireLicenseAcceptance>
+    <description></description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+    <dependencies>
+        <dependency id="Microsoft.Owin.Host.HttpListener" version="2.0.2" />
+        <dependency id="Nancy" version="0.23.1" />
+        <dependency id="Nancy.Hosting.Self" version="0.23.1" />
+        <dependency id="Newtonsoft.Json" version="6.0.3" />
+        <dependency id="PactNet" version="1.1.4" />
+        <dependency id="Serilog" version="1.5.14" />
+        <dependency id="System.IO.Abstractions" version="1.4.0.86" />
+    </dependencies>
+  </metadata>
+</package>
