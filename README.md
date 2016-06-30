@@ -1,4 +1,4 @@
-## seek.automation.stub
+## SEEK Automation Stubbing Library
 
 A pact based stubbing library written in C#.
 
