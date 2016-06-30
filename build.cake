@@ -68,7 +68,7 @@ Task("Build-Solution")
     .Does(() =>
 				{
 					MSBuild(string.Format("{0}.sln", projectName), new MSBuildSettings()
-						.UseToolVersion(MSBuildToolVersion.NET452)
+						.UseToolVersion(MSBuildToolVersion.NET45)
 						.SetVerbosity(Verbosity.Minimal)
 						.SetConfiguration(configuration)
 						);
