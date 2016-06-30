@@ -111,6 +111,9 @@ performance.MaxExecutionTime
 performance.MinExecutionTime
 ```
 
+## Notes
+
+I have added usage tests however, as time permits more unit tests will be added.
 
 
 
