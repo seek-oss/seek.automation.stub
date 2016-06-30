@@ -95,7 +95,7 @@ Task("Create-Nuget-Package")
 									Owners						= new[] {"SEEK"},
 									Description					= projectDescription,
 									Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
-									ProjectUrl					= new Uri("http://developer.seek.com.au"),
+									ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),
 									Copyright					= "Copyright 2015",
 									ReleaseNotes				= new [] {"Integration", "Pact"},
 									Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
@@ -125,10 +125,10 @@ Task("Publish-Nuget-Package")
 						}
 
 						// Push the package
-						NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
-							Source = "https://www.nuget.org/api/v2/package",
-							ApiKey = apiKey
-						});
+						//NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
+						//	Source = "https://www.nuget.org/api/v2/package",
+						//	ApiKey = apiKey
+						//});
 					}
 					else
 					{
