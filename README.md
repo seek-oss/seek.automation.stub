@@ -2,6 +2,8 @@
 
 A pact based stubbing library written in C#.
 
+To find this package on Nuget.org, please visit https://www.nuget.org/packages/seek.automation.stub/
+
 ## Overview
 
 This package is particularly usefull if your team or company is building your product using microservice architecture, using C# language.
