@@ -8,7 +8,7 @@
     <summary>A pact based stubbing library</summary>
     <projectUrl>https://github.com/SEEK-Jobs/seek.automation.stub</projectUrl>
     <requireLicenseAcceptance></requireLicenseAcceptance>
-    <description></description>
+    <description>This package can be used to stub services by loading pact files.</description>
     <releaseNotes></releaseNotes>
     <copyright></copyright>
     <tags></tags>
