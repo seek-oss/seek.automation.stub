@@ -88,24 +88,24 @@ Task("Create-Nuget-Package")
     .Does(() =>
 				{
 					var nuGetPackSettings   = new NuGetPackSettings {
-									Id							= projectName,
-									Version						= version,
-									Title						= "SEEK Pact Based Stub Library",
-									Authors						= new[] {"Behdad Darougheh"},
-									Owners						= new[] {"SEEK"},
-									Description					= projectDescription,
-									Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
-									ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),
-									Copyright					= "Copyright 2015",
-									ReleaseNotes				= new [] {"Integration", "Pact"},
-									Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
-									RequireLicenseAcceptance	= false,        
-									Files						= new [] {
-																			new NuSpecContent {Source = string.Format("bin/release/{0}.dll", projectName), Target = "lib/net45"},
-																		 },
-									BasePath					= string.Format("{0}/", projectName), 
-									OutputDirectory				= nugetDir
-								};
+								Id							= projectName,
+								Version						= version,
+								Title						= "SEEK Pact Based Stub Library",
+								Authors						= new[] {"Behdad Darougheh"},
+								Owners						= new[] {"SEEK"},
+								Description					= projectDescription,
+								Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
+								ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),
+								Copyright					= "Copyright 2015",
+								ReleaseNotes				= new [] {"Integration", "Pact"},
+								Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
+								RequireLicenseAcceptance	= false,        
+								Files						= new [] {
+																		new NuSpecContent {Source = string.Format("bin/release/{0}.dll", projectName), Target = "lib/net45"},
+																		},
+								BasePath					= string.Format("{0}/", projectName), 
+								OutputDirectory				= nugetDir
+							};
                 
 					NuGetPack(string.Format("{0}.nuspec", projectName), nuGetPackSettings);
 				}
@@ -125,10 +125,10 @@ Task("Publish-Nuget-Package")
 						}
 
 						// Push the package
-						//NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
-						//	Source = "https://www.nuget.org/api/v2/package",
-						//	ApiKey = apiKey
-						//});
+						NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
+							Source = "https://www.nuget.org/api/v2/package",
+							ApiKey = apiKey
+						});
 					}
 					else
 					{
