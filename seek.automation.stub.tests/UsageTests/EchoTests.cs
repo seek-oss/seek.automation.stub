@@ -13,7 +13,8 @@ namespace seek.automation.stub.tests.UsageTests
             var dad = Stub.Create(9000).Echo(202);
 
             var client = new RestClient("http://localhost:9000/");
-            var request = new RestRequest("/anything/anyway/", Method.POST);
+            var request = new RestRequest("/anything/anyway/", Method.POST) {RequestFormat = DataFormat.Json};
+            request.AddBody(new { A = "foo", B = "bar" });
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.Accepted);

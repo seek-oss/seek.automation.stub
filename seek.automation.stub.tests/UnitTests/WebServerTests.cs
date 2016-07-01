@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using FluentAssertions;
 using seek.automation.stub.Helpers;
 using Xunit;

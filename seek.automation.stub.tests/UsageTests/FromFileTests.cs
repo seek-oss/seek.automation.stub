@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using FluentAssertions;
 using RestSharp;
 using Xunit;
@@ -22,6 +23,20 @@ namespace seek.automation.stub.tests.UsageTests
         }
 
         [Fact]
+        public void Validate_When_Response_Has_Body()
+        {
+            var dad = Stub.Create(9000).FromFile("Data/PactWithRespBody.json");
+
+            var client = new RestClient("http://localhost:9000/");
+            var request = new RestRequest("/please/give/me/some/money", Method.POST);
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.Content.Should().BeEquivalentTo("{\r\n  \"Money\": \"10\"\r\n}");
+            dad.Dispose();
+        }
+
+        [Fact]
         public void Validate_When_Request_Is_Not_Matched()
         {
             var dad = Stub.Create(9000).FromFile("Data/SimplePact.json");
@@ -34,6 +49,12 @@ namespace seek.automation.stub.tests.UsageTests
             response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/food', Body ''");
 
             dad.Dispose();
+        }
+
+        [Fact]
+        public void Validate_When_File_Is_Not_Found()
+        {
+            Assert.Throws<FileNotFoundException>(() => Stub.Create(9000).FromFile("NoFile.json"));
         }
     }
 }

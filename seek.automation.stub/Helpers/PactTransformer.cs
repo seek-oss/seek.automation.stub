@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ using PactNet.Models;
 
 namespace seek.automation.stub.Helpers
 {
+    [ExcludeFromCodeCoverage]
     public class PactTransformer<T> where T : class
     {
         private readonly string _consumerName;
