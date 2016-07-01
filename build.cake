@@ -84,7 +84,7 @@ Task("Run-Unit-Tests")
 		 );
 
 Task("Create-Nuget-Package")
-    .IsDependentOn("Run-Unit-Tests")
+    .IsDependentOn("Build-Solution")
     .Does(() =>
 				{
 					var nuGetPackSettings   = new NuGetPackSettings {

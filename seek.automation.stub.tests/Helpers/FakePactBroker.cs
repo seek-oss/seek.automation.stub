@@ -6,8 +6,8 @@ namespace seek.automation.stub.tests.Helpers
 {
     public class FakePactBroker
     {
-        string _fakePactBrokerUrl;
-        HttpListener _listener = new HttpListener();
+        readonly string _fakePactBrokerUrl;
+        readonly HttpListener _listener = new HttpListener();
 
         public FakePactBroker(string listenOn)
         {
@@ -35,7 +35,7 @@ namespace seek.automation.stub.tests.Helpers
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(string.Format("Fake pact broker failed with exception: {0}", ex.Message));
+                        Console.WriteLine("Fake pact broker failed with exception: {0}", ex.Message);
                     }
                     finally
                     {
