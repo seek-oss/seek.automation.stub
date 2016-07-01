@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using Xunit;
 using RestSharp;
@@ -53,15 +54,8 @@ namespace seek.automation.stub.tests.UsageTests
         [Fact]
         public void Validate_When_Pact_Is_Not_Valid()
         {
-            try
-            {
-                Stub.Create(9000).FromJson("<Invalid Json");
-            }
-            catch (InvalidDataException exception)
-            {
-                exception.Should().NotBeNull();
-                exception.Message.Should().Be("The pact file is not a valid JSON document.");
-            }
+            var exception = Assert.Throws<InvalidDataException>(() => Stub.Create(9000).FromJson("<Invalid Json"));
+            exception.Message.Should().Be("The pact file is not a valid JSON document.");
         }
     }
 }
