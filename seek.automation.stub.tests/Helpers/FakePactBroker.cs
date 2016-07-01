@@ -26,11 +26,11 @@ namespace seek.automation.stub.tests.Helpers
                     var context = _listener.GetContext();
                     try
                     {
-                        var fakeResponse = context.Response;
+                        var response = context.Response;
 
                         byte[] buffer = System.Text.Encoding.UTF8.GetBytes(json);
-                        fakeResponse.ContentLength64 = buffer.Length;
-                        System.IO.Stream output = fakeResponse.OutputStream;
+                        response.ContentLength64 = buffer.Length;
+                        System.IO.Stream output = response.OutputStream;
                         output.Write(buffer, 0, buffer.Length);
                     }
                     catch (Exception ex)
