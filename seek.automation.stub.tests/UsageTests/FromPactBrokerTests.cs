@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using Xunit;
 using RestSharp;
 using FluentAssertions;
@@ -47,6 +48,20 @@ namespace seek.automation.stub.tests.UsageTests
 
             dad.Dispose();
             fakePactBroker.Dispose();
+        }
+
+        [Fact]
+        public void Validate_When_Pact_Is_Not_Valid()
+        {
+            try
+            {
+                var dad = Stub.Create(9000).FromJson("<Invalid Json");
+            }
+            catch (InvalidDataException exception)
+            {
+                exception.Should().NotBeNull();
+                exception.Message.Should().Be("The pact file is not a valid JSON document.");
+            }
         }
     }
 }

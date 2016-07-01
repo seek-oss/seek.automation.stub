@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 using PactNet;
 using PactNet.Mocks.MockHttpService.Models;
 
-namespace seek.automation.stub
+namespace seek.automation.stub.Helpers
 {
     [SuppressMessage("ReSharper", "UseStringInterpolation")]
     public class Helper

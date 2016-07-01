@@ -1,9 +1,9 @@
-﻿using Xunit;
-using RestSharp;
+﻿using System.Net;
 using FluentAssertions;
-using System.Net;
+using RestSharp;
+using Xunit;
 
-namespace seek.automation.stub.tests
+namespace seek.automation.stub.tests.UsageTests
 {
     public class FromFileTests
     {

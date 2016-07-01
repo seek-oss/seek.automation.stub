@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace seek.automation.stub
+namespace seek.automation.stub.Helpers
 {
     public static class NameValueCollectionExtension
     {

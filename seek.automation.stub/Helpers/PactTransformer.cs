@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 using PactNet.Mocks.MockHttpService.Models;
 using PactNet.Models;
 
-namespace seek.automation.stub
+namespace seek.automation.stub.Helpers
 {
     public class PactTransformer<T> where T : class
     {

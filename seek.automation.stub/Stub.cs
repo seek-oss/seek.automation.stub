@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using seek.automation.stub.Helpers;
 using Serilog;
 
 namespace seek.automation.stub
@@ -130,7 +131,7 @@ namespace seek.automation.stub
             catch (Exception ex)
             {
                 _logger.Error(string.Format("Failed to read the pact file. Exception {0}", ex.Message));
-                throw;
+                throw new InvalidDataException("The pact file is not a valid JSON document.");
             }
         }
 

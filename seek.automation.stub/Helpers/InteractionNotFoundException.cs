@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace seek.automation.stub
+namespace seek.automation.stub.Helpers
 {
     public class InteractionNotFoundException : Exception
     {

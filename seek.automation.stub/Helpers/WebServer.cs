@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog;
 
-namespace seek.automation.stub
+namespace seek.automation.stub.Helpers
 {
     public interface IWebServer : IDisposable
     {
