@@ -34,29 +34,6 @@ namespace seek.automation.stub
             _webServer = new WebServer(_logger);
         }
 
-        private HttpResponseMessage PactCallback(int port, HttpListenerContext listenerContext)
-        {
-            _logger.Information("Pact simulation on port {0}...", port);
-
-            var regRes = Helper.PactRegistration(_pact, listenerContext, _matchBody);
-
-            return regRes;
-        }
-
-        private HttpResponseMessage EchoCallback(int port, HttpListenerContext listenerContext)
-        {
-            _logger.Information("Echo simulation on port {0}...", port);
-            
-            var payload = Helper.GetRequestPostData(listenerContext.Request);
-            var response = new HttpResponseMessage
-            {
-                StatusCode = (HttpStatusCode)_echoStatus,
-                Content = new StringContent(string.IsNullOrEmpty(payload) ? string.Empty : payload)
-            };
-
-            return response;
-        }
-
         public static Stub Create(int port)
         {
             var stub = new Stub(port);
@@ -118,6 +95,29 @@ namespace seek.automation.stub
             _webServer.Simulate(EchoCallback, _port);
 
             return this;
+        }
+        
+        private HttpResponseMessage PactCallback(int port, HttpListenerContext listenerContext)
+        {
+            _logger.Information("Pact simulation on port {0}...", port);
+
+            var regRes = Helper.PactRegistration(_pact, listenerContext, _matchBody);
+
+            return regRes;
+        }
+
+        private HttpResponseMessage EchoCallback(int port, HttpListenerContext listenerContext)
+        {
+            _logger.Information("Echo simulation on port {0}...", port);
+
+            var payload = Helper.GetRequestPostData(listenerContext.Request);
+            var response = new HttpResponseMessage
+            {
+                StatusCode = (HttpStatusCode)_echoStatus,
+                Content = new StringContent(string.IsNullOrEmpty(payload) ? string.Empty : payload)
+            };
+
+            return response;
         }
 
         private void ValidatePact(string pactContent)

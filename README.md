@@ -74,7 +74,7 @@ oauth_signature
 ```
 
 ## Performance Feature
-This library also provides a feature to allow you to run mini pact based performance based tests:
+This library also provides a feature to allow you to run mini pact based performance tests:
 
 ```
         [Fact]
@@ -115,7 +115,7 @@ performance.MinExecutionTime
 
 ## Notes
 
-I have added usage tests however, as time permits more unit tests will be added.
+I have added usage tests for this library. However, as time permits unit tests will also be added.
 
 
 
