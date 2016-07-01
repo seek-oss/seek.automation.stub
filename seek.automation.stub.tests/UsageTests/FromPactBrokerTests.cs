@@ -55,7 +55,7 @@ namespace seek.automation.stub.tests.UsageTests
         {
             try
             {
-                var dad = Stub.Create(9000).FromJson("<Invalid Json");
+                Stub.Create(9000).FromJson("<Invalid Json");
             }
             catch (InvalidDataException exception)
             {
