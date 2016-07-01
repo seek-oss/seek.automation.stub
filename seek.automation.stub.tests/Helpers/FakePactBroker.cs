@@ -6,12 +6,17 @@ namespace seek.automation.stub.tests.Helpers
 {
     public class FakePactBroker
     {
+        string _fakePactBrokerUrl;
         HttpListener _listener = new HttpListener();
+
+        public FakePactBroker(string listenOn)
+        {
+            _fakePactBrokerUrl = listenOn;
+        }
 
         public void RespondWith(string json)
         {
-            var prefix = string.Format("http://*:{0}/", 12345);
-            _listener.Prefixes.Add(prefix);
+            _listener.Prefixes.Add(_fakePactBrokerUrl);
             _listener.Start();
             
             Task.Factory.StartNew(() =>
