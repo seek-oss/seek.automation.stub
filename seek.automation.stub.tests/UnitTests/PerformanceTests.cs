@@ -86,10 +86,8 @@ namespace seek.automation.stub.tests.UnitTests
         {
             var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
             fakePactBroker.RespondWith(PactAsJson);
-
-            var fakeStopWatch = new StartWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
-            var fakeLapStopWatch = new StartWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
-            var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
+            
+            var performance = new Performance(FakePactBrokerUrl);
 
             fakePactBroker.Dispose();
 
@@ -99,9 +97,7 @@ namespace seek.automation.stub.tests.UnitTests
         [Fact]
         public void Validate_Pact_File_Is_Copied_If_Local_Pact_Is_Specified()
         {
-            var fakeStopWatch = new StartWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
-            var fakeLapStopWatch = new StartWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
-            var performance = new Performance("Data/SimplePact.json", fakeStopWatch, fakeLapStopWatch);
+            var performance = new Performance("Data/SimplePact.json");
 
             Assert.True(File.Exists(performance.LocalPact), "Failed to download the pact to local machine.");
         }
@@ -110,6 +106,7 @@ namespace seek.automation.stub.tests.UnitTests
         public void Validate_Exception_When_Pact_Broker_Is_Not_Found()
         {
             var ex = Assert.Throws<WebException>(() => new Performance("http://somewhere.here.there"));
+
             ex.Message.Should().Be("The remote name could not be resolved: 'somewhere.here.there'");
         }
 
@@ -117,6 +114,7 @@ namespace seek.automation.stub.tests.UnitTests
         public void Validate_Exception_When_Pact_File_Is_Not_Found()
         {
             var ex = Assert.Throws<FileNotFoundException>(() => new Performance("NoFile.json"));
+
             ex.Message.Should().Be("Could not find file 'NoFile.json'.");
         }
     }

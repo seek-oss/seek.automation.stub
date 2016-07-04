@@ -102,7 +102,9 @@ namespace seek.automation.stub.tests.UsageTests
         [Fact]
         public void Validate_When_File_Is_Not_Found()
         {
-            Assert.Throws<FileNotFoundException>(() => Stub.Create(9000).FromFile("NoFile.json"));
+            var ex = Assert.Throws<FileNotFoundException>(() => Stub.Create(9000).FromFile("NoFile.json"));
+
+            ex.Message.Should().Be("Unable to find the specified file.");
         }
     }
 }
