@@ -81,7 +81,6 @@ namespace seek.automation.stub.tests.UnitTests
             fakePactBroker.Dispose();
 
             Performance.Round(performance.MaxExecutionTime.TotalMilliseconds).Should().Be(1234000);
-            Performance.Round(performance.MinExecutionTime.TotalMilliseconds).Should().Be(1234000);
         }
 
         [Fact]
