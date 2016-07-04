@@ -184,7 +184,7 @@ If any other problems please submit an issue or a pull request.
 
 ## License Information
 
-This is released under MIT license. All rights reserved by Behdad Darougheh .
+This is released under MIT license. All rights reserved by Behdad Darougheh, Copy Rights @ 2015.
 
 
 
