@@ -109,6 +109,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helpers\FakePactBroker.cs" />
+    <Compile Include="UnitTests\PerformanceTests.cs" />
     <Compile Include="UnitTests\WebServerTests.cs" />
     <Compile Include="UsageTests\AuthenticationTests.cs" />
     <Compile Include="UsageTests\EchoTests.cs" />

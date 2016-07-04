@@ -6,6 +6,47 @@ using System.Net;
 
 namespace seek.automation.stub
 {
+    public interface IStopWatch
+    {
+        void Start();
+        void Stop();
+        void Reset();
+        TimeSpan Elapsed { get; set; }
+    }
+
+    [SuppressMessage("ReSharper", "ConvertPropertyToExpressionBody")]
+    public class CustomStopWatch : IStopWatch
+    {
+        public Stopwatch StopWatch;
+
+        public CustomStopWatch()
+        {
+            StopWatch = new Stopwatch();
+        }
+
+        public void Start()
+        {
+            StopWatch.Start();
+        }
+
+        public void Stop()
+        {
+            StopWatch.Stop();
+        }
+
+        public void Reset()
+        {
+            StopWatch.Reset();
+        }
+
+        [ExcludeFromCodeCoverage]
+        public TimeSpan Elapsed
+        {
+            get { return StopWatch.Elapsed; }
+            set { throw new NotImplementedException(); }
+        }
+    }
+
     [SuppressMessage("ReSharper", "UseStringInterpolation")]
     public class Performance
     {
@@ -13,23 +54,26 @@ namespace seek.automation.stub
         public TimeSpan AverageExecutionTime { get; private set; }
         public TimeSpan MaxExecutionTime { get; private set; }
         public TimeSpan MinExecutionTime { get; private set; }
-        public Stopwatch StopWatch { get; set; }
+        public IStopWatch StopWatch { get; set; }
+        public IStopWatch LapStopWatch { get; set; }
         public string LocalPact { get; set; }
 
-        public Performance(string pactUri)
+        public Performance(string pactUri, IStopWatch stopWatch = null, IStopWatch lapStopWatch = null)
         {
             MaxExecutionTime = new TimeSpan(long.MinValue);
             MinExecutionTime = new TimeSpan(long.MaxValue);
 
-            StopWatch = new Stopwatch();
-            LocalPact = string.Format("PerformancePactFile-{0}.json", DateTime.Now.ToString("yyyyMMdd-hhmmssff"));
+            StopWatch = stopWatch ?? new CustomStopWatch();
+            LapStopWatch = lapStopWatch ?? new CustomStopWatch();
+
+            LocalPact = string.Format("PerformancePactFile-{0}.json", DateTime.Now.ToString("yyyyMMdd-hhmmssfffffff"));
 
             SavePactLocally(pactUri, LocalPact);
         }
 
         public void Run(Action action, int iterations)
         {
-            var lapStopWatch = new Stopwatch();
+            LapStopWatch = new CustomStopWatch();
 
             action();
 
@@ -37,14 +81,14 @@ namespace seek.automation.stub
             {
                 for (var i = 0; i < iterations; i++)
                 {
-                    lapStopWatch.Start();
+                    LapStopWatch.Start();
                     action();
-                    lapStopWatch.Stop();
+                    LapStopWatch.Stop();
 
-                    if (lapStopWatch.Elapsed > MaxExecutionTime) MaxExecutionTime = lapStopWatch.Elapsed;
-                    if (lapStopWatch.Elapsed < MinExecutionTime) MinExecutionTime = lapStopWatch.Elapsed;
+                    if (LapStopWatch.Elapsed > MaxExecutionTime) MaxExecutionTime = LapStopWatch.Elapsed;
+                    if (LapStopWatch.Elapsed < MinExecutionTime) MinExecutionTime = LapStopWatch.Elapsed;
 
-                    lapStopWatch.Reset();
+                    LapStopWatch.Reset();
                 }
             }
 
@@ -72,14 +116,10 @@ namespace seek.automation.stub
                         inputStream.CopyTo(outputFile);
                         return;
                     }
-
-                    throw new Exception("Failed to read to the Pact file!");
                 }
             }
-
+            
             File.Copy(pactUri, localPactFileName);
-
-            if (!File.Exists(localPactFileName)) throw new FileNotFoundException("Failed to read the pact file {0}", localPactFileName);
         }
 
         public static double Round(double number)
