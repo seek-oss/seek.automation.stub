@@ -2,7 +2,7 @@
 
 A pact based stubbing library written in C#.
 
-To find this package on Nuget.org, please visit https://www.nuget.org/packages/seek.automation.stub/
+To find this package on Nuget.org, please visit [this page](https://www.nuget.org/packages/seek.automation.stub/)
 
 ## Overview
 
@@ -179,12 +179,12 @@ When time permits, the usage tests will be replaced with unit tests. Since usage
 
 ## Troubleshooting
 
-If you recieve "Access Denied", please check the account that you are running your project.
-If any other problems please submit and issue or a pull request.
+If you recieve "Access Denied", please check the account that you are using to run your project.
+If any other problems please submit an issue or a pull request.
 
 ## License Information
 
-This is released under MIT license. All rights reserved by Behdad Darougheh.
+This is released under MIT license. All rights reserved by Behdad Darougheh .
 
 
 
