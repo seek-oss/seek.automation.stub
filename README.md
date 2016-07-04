@@ -34,7 +34,9 @@ When publishing you need to have set the NUGET_ORG_API_KEY environment variable.
 
 This one line will create a service listening on port 9000, and loads the specified pact file from hard disk:
 
-```var fakeService = Stub.Create(9000).FromFile("SimplePact.json");```
+```csharp
+var fakeService = Stub.Create(9000).FromFile("SimplePact.json");
+```
 
 where the SimplePact.json, contains a pact with multiple interactions. Here is a pact file with only one interaction:
 
