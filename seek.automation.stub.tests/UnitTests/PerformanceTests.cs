@@ -10,12 +10,12 @@ using Xunit;
 namespace seek.automation.stub.tests.UnitTests
 {
     [SuppressMessage("ReSharper", "ConvertPropertyToExpressionBody")]
-    public class CustomStopWatch : IStopWatch
+    public class FakeStopWatch : IStopWatch
     {
         public Stopwatch StopWatch;
         public TimeSpan TimeSpan;
 
-        public CustomStopWatch(){StopWatch = new Stopwatch();}
+        public FakeStopWatch(){StopWatch = new Stopwatch();}
         public void Start(){StopWatch.Start();}
         public void Stop(){StopWatch.Stop();}
         public void Reset(){StopWatch.Reset();}
@@ -38,8 +38,8 @@ namespace seek.automation.stub.tests.UnitTests
             var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
             fakePactBroker.RespondWith(PactAsJson);
 
-            var fakeStopWatch = new CustomStopWatch {Elapsed = new TimeSpan(0, 0, 0, 1234)};
-            var fakeLapStopWatch = new CustomStopWatch {Elapsed = new TimeSpan(0, 0, 0, 1234)};
+            var fakeStopWatch = new FakeStopWatch {Elapsed = new TimeSpan(0, 0, 0, 1234)};
+            var fakeLapStopWatch = new FakeStopWatch {Elapsed = new TimeSpan(0, 0, 0, 1234)};
             var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
 
             performance.Run(() => { }, 10);
@@ -55,8 +55,8 @@ namespace seek.automation.stub.tests.UnitTests
             var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
             fakePactBroker.RespondWith(PactAsJson);
 
-            var fakeStopWatch = new CustomStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
-            var fakeLapStopWatch = new CustomStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var fakeStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var fakeLapStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
             var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
 
             performance.Run(() => { }, 10);
@@ -64,6 +64,41 @@ namespace seek.automation.stub.tests.UnitTests
             fakePactBroker.Dispose();
 
             Performance.Round(performance.AverageExecutionTime.TotalSeconds).Should().Be(123.4);
+        }
+
+        [Fact]
+        public void Validate_Max_Execution_Time()
+        {
+            var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
+            fakePactBroker.RespondWith(PactAsJson);
+
+            var fakeStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var fakeLapStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
+
+            performance.Run(() => { System.Threading.Thread.Sleep(1);}, 10);
+
+            fakePactBroker.Dispose();
+
+            Performance.Round(performance.MaxExecutionTime.TotalMilliseconds).Should().Be(1234000);
+            Performance.Round(performance.MinExecutionTime.TotalMilliseconds).Should().Be(1234000);
+        }
+
+        [Fact]
+        public void Validate_Min_Execution_Time()
+        {
+            var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
+            fakePactBroker.RespondWith(PactAsJson);
+
+            var fakeStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var fakeLapStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
+            var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
+
+            performance.Run(() => { System.Threading.Thread.Sleep(1); }, 10);
+
+            fakePactBroker.Dispose();
+            
+            Performance.Round(performance.MinExecutionTime.TotalMilliseconds).Should().Be(1234000);
         }
 
         [Fact]

@@ -15,6 +15,7 @@ namespace seek.automation.stub
     }
 
     [SuppressMessage("ReSharper", "ConvertPropertyToExpressionBody")]
+    [ExcludeFromCodeCoverage]
     public class CustomStopWatch : IStopWatch
     {
         public Stopwatch StopWatch;
@@ -59,7 +60,7 @@ namespace seek.automation.stub
 
         public void Run(Action action, int iterations)
         {
-            LapStopWatch = new CustomStopWatch();
+            LapStopWatch = LapStopWatch ?? new CustomStopWatch();
 
             action();
 
