@@ -85,25 +85,25 @@ oauth_signature
 This library also provides a feature to allow you to run mini pact based performance tests:
 
 ```
-        [Fact]
-        public void Mini_Pact_Based_Performance_Test()
-        {
-            using (var testServer = TestServer.Create(app => OwinStartup.Configuration(app, BuildMyServiceUnderTest())))
-            {
-                var performance = new Performance("http://pactbroker/pacts/provider/dad/consumer/child/latest");
+[Fact]
+public void Mini_Pact_Based_Performance_Test()
+{
+    using (var testServer = TestServer.Create(app => OwinStartup.Configuration(app, BuildMyServiceUnderTest())))
+    {
+        var performance = new Performance("http://pactbroker/pacts/provider/dad/consumer/child/latest");
 
-                var pactVerifier = new PactVerifier(() => { }, () => { });
+        var pactVerifier = new PactVerifier(() => { }, () => { });
 
-                pactVerifier
-                    .ProviderState("Dad has enough money")
-                    .ServiceProvider("Dad", testServer.HttpClient).HonoursPactWith("Child")
-                    .PactUri(performance.LocalPact);
+        pactVerifier
+            .ProviderState("Dad has enough money")
+            .ServiceProvider("Dad", testServer.HttpClient).HonoursPactWith("Child")
+            .PactUri(performance.LocalPact);
 
-                performance.Run(() => pactVerifier.Verify("a request for money"), 1000);
+        performance.Run(() => pactVerifier.Verify("a request for money"), 1000);
 
-                Round(performance.AverageExecutionTime.TotalSeconds).Should().BeLessThan(0.005);
-            }
-        }
+        Round(performance.AverageExecutionTime.TotalSeconds).Should().BeLessThan(0.005);
+    }
+}
 ```
 In the above example, BuildMyServiceUnderTest, is a function that builds the current service, by mocking/stubbing, the dependencies.
 
