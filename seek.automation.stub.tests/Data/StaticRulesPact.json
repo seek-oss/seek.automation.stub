@@ -20,7 +20,7 @@
         "status": 200,
         "body": {
           "amount": "[INT]",
-          "reciept": "[GUID]"
+          "receipt": "[GUID]"
         }
       }
     }

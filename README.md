@@ -155,7 +155,7 @@ So if load the following pact into Stub:
         "status": 200,
         "body": {
           "amount": "[INT]",
-          "reciept": "[GUID]"
+          "receipt": "[GUID]"
         }
       }
     }
@@ -163,13 +163,13 @@ So if load the following pact into Stub:
 }
 ```
 
-Then the response that comes back everytime will have different values for the amount and the reciept:
+Then the response that comes back everytime will have different values for the amount and the receipt:
 ```
 {
     "status": 200,
     "body": {
       "amount": "19",
-      "reciept": "7c4530fd-a689-40db-992b-52fcf4ae983f"
+      "receipt": "7c4530fd-a689-40db-992b-52fcf4ae983f"
 }
 ```
 

@@ -46,8 +46,8 @@ namespace seek.automation.stub.tests.UsageTests
             var dict = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response.Content);
             
             Guid guid;
-            var isReciptGuid = Guid.TryParse((string)dict["reciept"], out guid);
-            isReciptGuid.Should().BeTrue("The value of the auto-generated reciept in the response should be an GUID.");
+            var isReciptGuid = Guid.TryParse((string)dict["receipt"], out guid);
+            isReciptGuid.Should().BeTrue("The value of the auto-generated receipt in the response should be an GUID.");
         }
     }
 }

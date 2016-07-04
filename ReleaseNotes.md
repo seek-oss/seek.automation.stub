@@ -1,3 +1,6 @@
+### New in 0.0.8 (Released 2016/07/04)
+* Update Serilog to the latest
+
 ### New in 0.0.7 (Released 2016/06/30)
 * Just added some tests
 
