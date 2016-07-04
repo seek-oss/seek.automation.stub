@@ -1,21 +1,21 @@
 ﻿using Xunit;
-using RestSharp;
 using FluentAssertions;
 using System.Net;
 
 namespace seek.automation.stub.tests.UsageTests
 {
-    public class EchoTests
+    public class EchoTests : TestBase
     {
+        public EchoTests() : base("http://localhost:9000/")
+        {
+        }
+
         [Fact]
         public void Validate_Stub_Can_Echo_Back_Status()
         {
             var dad = Stub.Create(9000).Echo(202);
-
-            var client = new RestClient("http://localhost:9000/");
-            var request = new RestRequest("/anything/anyway/", Method.POST) {RequestFormat = DataFormat.Json};
-            request.AddBody(new { A = "foo", B = "bar" });
-            var response = client.Execute(request);
+            
+            var response = DoHttpPost("/anything/anyway/", "{ A = \"foo\", B = \"bar\" }");
 
             dad.Dispose();
 

@@ -118,6 +118,7 @@
     <Compile Include="UsageTests\FromJsonTests.cs" />
     <Compile Include="UsageTests\FromPactBrokerTests.cs" />
     <Compile Include="UsageTests\StaticRulesTests.cs" />
+    <Compile Include="UsageTests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SimplePact.json">
