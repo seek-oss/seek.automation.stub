@@ -18,9 +18,9 @@ namespace seek.automation.stub.tests.UsageTests
             var request = new RestRequest("/please/give/me/some/money", Method.POST);
             var response = client.Execute(request);
 
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
             dad.Dispose();
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Fact]
@@ -32,10 +32,10 @@ namespace seek.automation.stub.tests.UsageTests
             var request = new RestRequest("/please/give/me/some/food", Method.POST);
             var response = client.Execute(request);
 
+            dad.Dispose();
+
             response.StatusCode.ToString().Should().Be("551");
             response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/food', Body ''");
-
-            dad.Dispose();
         }
     }
 }

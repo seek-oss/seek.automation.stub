@@ -117,6 +117,57 @@ performance.MinExecutionTime
 
 I have added usage tests for this library. However, as time permits unit tests will also be added.
 
+## Tips and Tricks
+
+There is a small feature built into the library where if you need to auto-generate some IDs or Guids you can easily do
+that. This only applies to the response.
+
+If you have an Id where it needs to be different when the response comes back from the Stub, then you set the value to [INT]. This means that the Stub, will return a random integer, when sending the response back.
+
+Similarly, if you need the stub to return a response where you require a different GUID, then set the value to [GUID].
+
+So if load the following pact into Stub:
+
+```
+{
+  "provider": {
+    "name": "Dad"
+  },
+  "consumer": {
+    "name": "Child"
+  },
+  "interactions": [
+    {
+      "description": "a request for money",
+      "provider_state": "Dad has enough money",
+      "request": {
+        "method": "post",
+        "path": "/please/give/me/some/money",
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "amount": "[INT]",
+          "reciept": "[GUID]"
+        }
+      }
+    }
+  ]
+}
+```
+
+Then the response that comes back everytime will have different values for the amount and the reciept:
+```
+{
+    "status": 200,
+    "body": {
+      "amount": "19",
+      "reciept": "7c4530fd-a689-40db-992b-52fcf4ae983f"
+}
+```
 
 
 

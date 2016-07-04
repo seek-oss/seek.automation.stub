@@ -52,8 +52,8 @@ namespace seek.automation.stub.Helpers
                 var requestMethodMatches = providerServiceInteraction.Request.Method.ToString().Equals(request.HttpMethod, StringComparison.OrdinalIgnoreCase);
 
                 var pactRequestBody = providerServiceInteraction.Request.Body == null ? string.Empty : providerServiceInteraction.Request.Body.ToString();
-
-                var requestBodyMatches = !matchBody || pactRequestBody.Equals(requestBody, StringComparison.OrdinalIgnoreCase);
+                
+                var requestBodyMatches = !matchBody || pactRequestBody.ToString().Equals(requestBody, StringComparison.OrdinalIgnoreCase);
                 if (requestPathMatches && requestMethodMatches && requestBodyMatches)
                 {
                     var response = new HttpResponseMessage
