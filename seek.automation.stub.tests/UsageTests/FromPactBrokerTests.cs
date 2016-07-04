@@ -9,17 +9,18 @@ namespace seek.automation.stub.tests.UsageTests
     public class FromPactBrokerTests : TestBase
     {
         private const string FakePactBrokerUrl = "http://localhost:12345/";
-        private const string PactAsJson = "{\r\n  \"provider\": {\r\n    \"name\": \"Dad\"\r\n  },\r\n  \"consumer\": {\r\n    \"name\": \"Child\"\r\n  },\r\n  \"interactions\": [\r\n    {\r\n      \"description\": \"a request for money\",\r\n      \"provider_state\": \"Dad has enough money\",\r\n   \"request\": {\r\n        \"method\": \"post\",\r\n        \"path\": \"/please/give/me/some/money\",\r\n        \"headers\": {\r\n          \"Content-Type\": \"application/json; charset=utf-8\"\r\n        }\r\n      },\r\n      \"response\": {\r\n        \"status\": 200\r\n      }\r\n    }\r\n  ]\r\n}";
+        private readonly string _pactAsString;
         
         public FromPactBrokerTests() : base("http://localhost:9000/")
         {
+            _pactAsString = File.ReadAllText("Data/SimplePact.json");
         }
 
         [Fact]
         public void Validate_When_Request_Is_Matched()
         {
             var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
-            fakePactBroker.RespondWith(PactAsJson);
+            fakePactBroker.RespondWith(_pactAsString);
 
             var dad = Stub.Create(9000).FromPactbroker(FakePactBrokerUrl);
             
@@ -35,7 +36,7 @@ namespace seek.automation.stub.tests.UsageTests
         public void Validate_When_Request_Is_Not_Matched()
         {
             var fakePactBroker = new FakePactBroker(FakePactBrokerUrl);
-            fakePactBroker.RespondWith(PactAsJson);
+            fakePactBroker.RespondWith(_pactAsString);
 
             var dad = Stub.Create(9000).FromPactbroker(FakePactBrokerUrl);
             
