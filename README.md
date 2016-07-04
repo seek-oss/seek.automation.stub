@@ -121,10 +121,6 @@ performance.MaxExecutionTime
 performance.MinExecutionTime
 ```
 
-## Notes
-
-I have added usage tests for this library. However, as time permits unit tests will also be added.
-
 ## Tips and Tricks
 
 There is a small feature built into the library where if you need to auto-generate some IDs or Guids you can easily do
