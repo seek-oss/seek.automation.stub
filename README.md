@@ -10,11 +10,11 @@ This package is particularly usefull if your team or company is building your pr
 It allows you to stub a service by listening on a port and accepting requests, and replying based on the interactions which are specified
 in a pact.
 
-The pact can be loaded in, either as a file, JSON string or from pact broker.
+The pact can be loaded in, either as a file, JSON string or from pact broker. 
 
 Please see examples below.
 
-## Example
+## Examples
 
 This one line will create a service listening on port 9000, and loads the specified pact file from hard disk:
 
@@ -61,6 +61,14 @@ Finally, if you want to load the pact from pact broker, use the FromPactbroker m
 
 ```
 var fakeService = Stub.Create(9000).FromPactbroker("http://pactbroker/pacts/provider/dad/consumer/child/latest");
+```
+
+Please note that the Stub, does a match on the request body by default. The match is a simple string match. If you don't care about the request body, you can ask the Stub to ignore it:
+
+```
+var fakeService = Stub.Create(9000).FromFile("SimplePact.json", false);
+var fakeService = Stub.Create(9000).FromJson(pactAsJsonString, false);
+var fakeService = Stub.Create(9000).FromPactbroker("http://pactbroker/pacts/provider/dad/consumer/child/latest", false);
 ```
 
 ## Authentication Issues
