@@ -173,10 +173,9 @@ Then the response that comes back everytime will have different values for the a
 }
 ```
 
-## Issues
+## Future Imporovements
 
-When time permits, replace the usage tests with unit tests. Since usage tests use the Stub and listen on the specified ports, if multiple branches of this projects are built on the same build machine, there could be a conflict.
-
+When time permits, the usage tests will be replaced with unit tests. Since usage tests use the Stub and listen on the specified ports, if multiple branches of this projects are built on the same build machine, there could be a conflict.
 
 
 
