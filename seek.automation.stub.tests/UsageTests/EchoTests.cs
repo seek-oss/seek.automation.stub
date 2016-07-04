@@ -17,9 +17,9 @@ namespace seek.automation.stub.tests.UsageTests
             request.AddBody(new { A = "foo", B = "bar" });
             var response = client.Execute(request);
 
-            response.StatusCode.Should().Be(HttpStatusCode.Accepted);
-
             dad.Dispose();
+
+            response.StatusCode.Should().Be(HttpStatusCode.Accepted);
         }
     }
 }

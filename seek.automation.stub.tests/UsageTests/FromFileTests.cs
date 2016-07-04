@@ -36,7 +36,6 @@ namespace seek.automation.stub.tests.UsageTests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Content.Should().BeEquivalentTo("{\r\n  \"Money\": \"10\"\r\n}");
-
         }
 
         [Fact]
