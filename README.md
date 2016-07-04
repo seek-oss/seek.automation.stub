@@ -71,7 +71,7 @@ var fakeService = Stub.Create(9000).FromJson(pactAsJsonString, false);
 var fakeService = Stub.Create(9000).FromPactbroker("http://pactbroker/pacts/provider/dad/consumer/child/latest", false);
 ```
 
-## Authentication Issues
+## Authentication Workaround
 At times you might encounter scenarios where the request contains authentication tokens. This library automatically
 removes the following tokens:
 
