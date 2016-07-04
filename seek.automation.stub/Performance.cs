@@ -19,25 +19,10 @@ namespace seek.automation.stub
     {
         public Stopwatch StopWatch;
 
-        public CustomStopWatch()
-        {
-            StopWatch = new Stopwatch();
-        }
-
-        public void Start()
-        {
-            StopWatch.Start();
-        }
-
-        public void Stop()
-        {
-            StopWatch.Stop();
-        }
-
-        public void Reset()
-        {
-            StopWatch.Reset();
-        }
+        public CustomStopWatch(){StopWatch = new Stopwatch();}
+        public void Start(){StopWatch.Start();}
+        public void Stop(){StopWatch.Stop();}
+        public void Reset(){StopWatch.Reset();}
 
         [ExcludeFromCodeCoverage]
         public TimeSpan Elapsed
@@ -48,6 +33,7 @@ namespace seek.automation.stub
     }
 
     [SuppressMessage("ReSharper", "UseStringInterpolation")]
+    [SuppressMessage("ReSharper", "UseNullPropagation")]
     public class Performance
     {
         public TimeSpan ExecutionTime { get; private set; }
@@ -114,9 +100,9 @@ namespace seek.automation.stub
                     if (inputStream != null)
                     {
                         inputStream.CopyTo(outputFile);
-                        return;
                     }
                 }
+                return;
             }
             
             File.Copy(pactUri, localPactFileName);

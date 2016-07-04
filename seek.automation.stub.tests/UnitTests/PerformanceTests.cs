@@ -15,25 +15,10 @@ namespace seek.automation.stub.tests.UnitTests
         public Stopwatch StopWatch;
         public TimeSpan TimeSpan;
 
-        public StartWatch()
-        {
-            StopWatch = new Stopwatch();
-        }
-
-        public void Start()
-        {
-            StopWatch.Start();
-        }
-
-        public void Stop()
-        {
-            StopWatch.Stop();
-        }
-
-        public void Reset()
-        {
-            StopWatch.Reset();
-        }
+        public StartWatch(){StopWatch = new Stopwatch();}
+        public void Start(){StopWatch.Start();}
+        public void Stop(){StopWatch.Stop();}
+        public void Reset(){StopWatch.Reset();}
         
         public TimeSpan Elapsed
         {
