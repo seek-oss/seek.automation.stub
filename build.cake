@@ -102,7 +102,7 @@ Task("Create-Nuget-Package")
 								RequireLicenseAcceptance	= false,        
 								Files						= new [] {
 																		new NuSpecContent {Source = string.Format("bin/release/{0}.dll", projectName), Target = "lib/net45"},
-																		},
+																	 },
 								BasePath					= string.Format("{0}/", projectName), 
 								OutputDirectory				= nugetDir
 							};
