@@ -141,4 +141,3 @@ Task("Default")
     .IsDependentOn("Publish-Nuget-Package");
 
 RunTarget(target);
-
