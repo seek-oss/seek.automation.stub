@@ -10,6 +10,8 @@ This package is particularly usefull if your team or company is building your pr
 It allows you to stub a service by listening on a port and accepting requests, and replying based on the interactions which are specified
 in a pact.
 
+If you are intrested in an installable service that can provide similar functionality please see [this page](https://github.com/SEEK-Jobs/SEEK.Automation.Phantom)
+
 The pact can be loaded in, either as a file, JSON string or from pact broker. 
 
 Please see examples below.
