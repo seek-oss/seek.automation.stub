@@ -90,7 +90,7 @@ Task("Create-Nuget-Package")
 				{
 					var nuGetPackSettings   = new NuGetPackSettings {
 								Id							= projectName,
-								Version						= appVeyorBuildNumber,
+								Version						= version,
 								Title						= "SEEK Pact Based Stub Library",
 								Authors						= new[] {"Behdad Darougheh"},
 								Owners						= new[] {"SEEK"},
