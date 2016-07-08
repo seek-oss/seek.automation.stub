@@ -106,7 +106,7 @@ namespace seek.automation.stub
                 return;
             }
             
-            File.Copy(pactUri, localPactFileName);
+            File.Copy(pactUri, localPactFileName, true);
         }
 
         public static double Round(double number)
