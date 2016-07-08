@@ -121,6 +121,8 @@ namespace seek.automation.stub.tests.UnitTests
             var performance = new Performance("Data/SimplePact.json");
 
             Assert.True(File.Exists(performance.LocalPact), "Failed to download the pact to local machine.");
+
+            File.Delete(performance.LocalPact);
         }
 
         [Fact]
