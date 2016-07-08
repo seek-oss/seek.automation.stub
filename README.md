@@ -1,3 +1,7 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/skj51qg05wh9md54?svg=true&passingText=project%20-%20OK)](https://ci.appveyor.com/project/b3hdad/seek-automation-stub)
+[![Build status](https://ci.appveyor.com/api/projects/status/skj51qg05wh9md54/branch/master?svg=true&passingText=master%20-%20OK)](https://ci.appveyor.com/project/b3hdad/seek-automation-stub/branch/master)
+
+
 ## SEEK Automation Stubbing Library
 
 A pact based stubbing library written in C#.

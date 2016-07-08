@@ -111,6 +111,8 @@ namespace seek.automation.stub.tests.UnitTests
             fakePactBroker.Dispose();
 
             Assert.True(File.Exists(performance.LocalPact), "Failed to download the pact to local machine.");
+
+            File.Delete(performance.LocalPact);
         }
 
         [Fact]
