@@ -126,7 +126,7 @@ Task("Publish-Nuget-Package")
 					NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
 						Source = "https://www.nuget.org/api/v2/package",
 						ApiKey = apiKey
-					})
+					});
 				}
 			);
 
