@@ -6,7 +6,8 @@ var projectDescription = "A library to allow stubbing of services while building
 var nugetDir = Directory("publish");
 var releaseNotes = ParseReleaseNotes("ReleaseNotes.md");
 var buildNumber = EnvironmentVariable("BUILD_NUMBER") ?? "0";
-var version = string.Format("{0}.{1}", releaseNotes.Version, buildNumber);
+var appVeyorBuildNumber = EnvironmentVariable("APPVEYOR_BUILD_NUMBER") ?? "0";
+var version = string.Format("{0}.{1}", releaseNotes.Version, appVeyorBuildNumber);
 
 Setup(context =>
 			{
@@ -89,7 +90,7 @@ Task("Create-Nuget-Package")
 				{
 					var nuGetPackSettings   = new NuGetPackSettings {
 								Id							= projectName,
-								Version						= version,
+								Version						= appVeyorBuildNumber,
 								Title						= "SEEK Pact Based Stub Library",
 								Authors						= new[] {"Behdad Darougheh"},
 								Owners						= new[] {"SEEK"},
@@ -119,7 +120,7 @@ Task("Publish-Nuget-Package")
 
 					var apiKey = EnvironmentVariable("NUGET_ORG_API_KEY");
 					if(string.IsNullOrEmpty(apiKey)) {
-								throw new InvalidOperationException("Could not resolve MyGet API key.");
+								throw new InvalidOperationException("Could not resolve NUGET_ORG_API_KEY API key.");
 					}
 
 					// Push the package
@@ -130,33 +131,7 @@ Task("Publish-Nuget-Package")
 				}
 			);
 
-Task("Publish-Nuget-Package-Team-City")
-    .IsDependentOn("Create-Nuget-Package")
-    .Does(() =>
-				{
-					if(TeamCity.IsRunningOnTeamCity)
-					{
-						Information("Publishing to Nuget.org...");
-
-						var apiKey = EnvironmentVariable("NUGET_ORG_API_KEY");
-						if(string.IsNullOrEmpty(apiKey)) {
-									throw new InvalidOperationException("Could not resolve MyGet API key.");
-						}
-
-						// Push the package
-						NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
-							Source = "https://www.nuget.org/api/v2/package",
-							ApiKey = apiKey
-						});
-					}
-					else
-					{
-						Information("This step is skipped as it is not running on the TeamCity agent!");
-					}
-				}
-			);
-
 Task("Default")
-    .IsDependentOn("Publish-Nuget-Package-Team-City");
+    .IsDependentOn("Run-Unit-Tests");
 
 RunTarget(target);
