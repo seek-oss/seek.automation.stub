@@ -53,7 +53,8 @@ namespace seek.automation.stub
             StopWatch = stopWatch ?? new CustomStopWatch();
             LapStopWatch = lapStopWatch ?? new CustomStopWatch();
 
-            LocalPact = string.Format("PerformancePactFile-{0}.json", DateTime.Now.ToString("yyyyMMdd-hhmmssfffffff"));
+            var random = new Random();
+            LocalPact = string.Format("PerformancePactFile-{0}{1}.json", DateTime.Now.ToString("yyyyMMdd-hhmmssfffffff"), random.Next(0, 1000));
 
             SavePactLocally(pactUri, LocalPact);
         }

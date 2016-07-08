@@ -115,6 +115,25 @@ Task("Publish-Nuget-Package")
     .IsDependentOn("Create-Nuget-Package")
     .Does(() =>
 				{
+					Information("Publishing to Nuget.org...");
+
+					var apiKey = EnvironmentVariable("NUGET_ORG_API_KEY");
+					if(string.IsNullOrEmpty(apiKey)) {
+								throw new InvalidOperationException("Could not resolve MyGet API key.");
+					}
+
+					// Push the package
+					NuGetPush(System.IO.Directory.GetFiles("publish")[0], new NuGetPushSettings {
+						Source = "https://www.nuget.org/api/v2/package",
+						ApiKey = apiKey
+					})
+				}
+			);
+
+Task("Publish-Nuget-Package-Team-City")
+    .IsDependentOn("Create-Nuget-Package")
+    .Does(() =>
+				{
 					if(TeamCity.IsRunningOnTeamCity)
 					{
 						Information("Publishing to Nuget.org...");
@@ -138,6 +157,6 @@ Task("Publish-Nuget-Package")
 			);
 
 Task("Default")
-    .IsDependentOn("Publish-Nuget-Package");
+    .IsDependentOn("Publish-Nuget-Package-Team-City");
 
 RunTarget(target);
