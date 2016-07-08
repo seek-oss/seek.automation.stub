@@ -4,7 +4,7 @@
 
 ## SEEK Automation Stubbing Library
 
-A pact based stubbing library written in C#.
+A [pact](https://github.com/SEEK-Jobs/pact-net) based stubbing library written in C#.
 
 To find this package on Nuget.org, please visit [this page](https://www.nuget.org/packages/seek.automation.stub/).
 
