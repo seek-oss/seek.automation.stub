@@ -203,7 +203,10 @@ Then the response that comes back everytime will have different values for the a
 
 ## Future Improvements
 
-When time permits, the usage tests will be replaced with unit tests. Since usage tests use the Stub and listen on the specified ports, if multiple branches of this projects are built on the same build machine, there could be a conflict.
+Some minor points to keep in mind:
+
+* If you have two interactions where the requests are exactly the same then the stub will pick the first interaction. In such a cases please attempt to use different bodies for your interactions. However, in the future, the stub can easily be extended to have extra filters based on the Pact's ```provider_state``` or even the ```description``` fields.
+* When time permits, the usage tests will be replaced with unit tests. Since usage tests use the Stub and listen on the specified ports, if multiple branches of this projects are built on the same build machine, there could be a conflict. This only applies if you decide to build this on your local build system rather than using the published nuget package.
 
 ## Troubleshooting
 
