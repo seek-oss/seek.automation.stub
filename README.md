@@ -99,7 +99,7 @@ var fakeService = Stub.Create(9000).FromPactbroker("http://pactbroker/pacts/prov
 ```
 
 There are also methods available to filter based on the provider_state or the description of the interaction. This may be
-useful if you have multiple interactions, where the requests are identical and you can not overcome this by having different body requests: 
+useful if you have multiple interactions, where the requests are identical and you can not overcome this by having different request bodies: 
 
 ```csharp
 var fakeService = Stub.Create(9000).FromFile("SimplePact.json");
