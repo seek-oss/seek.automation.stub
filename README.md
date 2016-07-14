@@ -98,6 +98,21 @@ var fakeService = Stub.Create(9000).FromJson(pactAsJsonString, false);
 var fakeService = Stub.Create(9000).FromPactbroker("http://pactbroker/pacts/provider/dad/consumer/child/latest", false);
 ```
 
+There are also methods available to filter based on the provider_state or the description of the interaction. This may be
+useful if you have multiple itneractions, where the requests are identical and you can not overcome this by having different body requests: 
+
+```csharp
+var fakeService = Stub.Create(9000).FromFile("SimplePact.json");
+fakeService.FilterOnProviderState("Dad has enough money and an advice");
+fakeService.FilterOnDescription("a request for money or advice");
+```
+
+You can also clear the filters at anytime:
+
+```csharp
+fakeService.ClearFilters();
+```
+
 ## Authentication Workaround
 At times you might encounter scenarios where the request contains authentication tokens. This library automatically
 removes the following tokens:

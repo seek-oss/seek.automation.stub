@@ -15,13 +15,13 @@ namespace seek.automation.stub.Helpers
     [SuppressMessage("ReSharper", "UseStringInterpolation")]
     public class Helper
     {
-        public static HttpResponseMessage PactRegistration(string payload, HttpListenerContext listenerContext, bool matchBody)
+        public static HttpResponseMessage PactRegistration(string payload, HttpListenerContext listenerContext, string providerState, string description, bool matchBody)
         {
             var pactFile = JsonConvert.DeserializeObject<ProviderServicePactFile>(payload);
             var pb = new PactBuilder();
             pb.ServiceConsumer(pactFile.Consumer.Name);
 
-            var responseToCurrentRequest = GetResponseForRequestFromPact(pactFile, listenerContext.Request, matchBody);
+            var responseToCurrentRequest = GetResponseForRequestFromPact(pactFile, listenerContext.Request, providerState, description, matchBody);
 
             return responseToCurrentRequest;
         }
@@ -41,7 +41,7 @@ namespace seek.automation.stub.Helpers
             return result;
         }
 
-        private static HttpResponseMessage GetResponseForRequestFromPact(ProviderServicePactFile pactFile, HttpListenerRequest request, bool matchBody)
+        private static HttpResponseMessage GetResponseForRequestFromPact(ProviderServicePactFile pactFile, HttpListenerRequest request, string providerState, string description, bool matchBody)
         {
             var requestBody = GetRequestPostData(request);
 
@@ -54,7 +54,11 @@ namespace seek.automation.stub.Helpers
                 var pactRequestBody = providerServiceInteraction.Request.Body == null ? string.Empty : providerServiceInteraction.Request.Body.ToString();
                 
                 var requestBodyMatches = !matchBody || pactRequestBody.ToString().Equals(requestBody, StringComparison.OrdinalIgnoreCase);
-                if (requestPathMatches && requestMethodMatches && requestBodyMatches)
+
+                var interactionProviderStateMatches = string.IsNullOrEmpty(providerState) || providerServiceInteraction.ProviderState.Equals(providerState);
+                var interactionDescriptionMatches = string.IsNullOrEmpty(description) || providerServiceInteraction.Description.Equals(description);
+
+                if (requestPathMatches && requestMethodMatches && interactionProviderStateMatches && interactionDescriptionMatches && requestBodyMatches)
                 {
                     var response = new HttpResponseMessage
                     {
@@ -67,8 +71,11 @@ namespace seek.automation.stub.Helpers
                     return response;
                 }
             }
+            
+            var message = string.Format("Method '{0}', Path '{1}', Body '{2}'. If you have specified filters please also check them.", 
+                request.HttpMethod, request.Url.PathAndQuery, requestBody);
 
-            throw new InteractionNotFoundException(string.Format("Method '{0}', Path '{1}', Body '{2}'", request.HttpMethod, request.Url.PathAndQuery, requestBody));
+            throw new InteractionNotFoundException(message);
         }
 
         private static bool RequestPathMatches(HttpListenerRequest request, ProviderServiceInteraction providerServiceInteraction)

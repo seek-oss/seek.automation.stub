@@ -46,7 +46,7 @@ namespace seek.automation.stub.tests.UsageTests
             dad.Dispose();
 
             response.StatusCode.ToString().Should().Be("551");
-            response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/food', Body ''");
+            response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/food', Body ''. If you have specified filters please also check them.");
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace seek.automation.stub.tests.UsageTests
             dad.Dispose();
 
             response.StatusCode.ToString().Should().Be("551");
-            response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/money', Body '{\"name\": \"Jack\"}'");
+            response.StatusDescription.Should().Be("Stub on port 9000 says interaction not found. Please verify that the pact associated with this port contains the following request(case insensitive) : Method 'POST', Path '/please/give/me/some/money', Body '{\"name\": \"Jack\"}'. If you have specified filters please also check them.");
         }
 
         [Fact]

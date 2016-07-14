@@ -9,17 +9,26 @@ using Serilog;
 
 namespace seek.automation.stub
 {
+    public interface IExtendable : IDisposable
+    {
+        IExtendable FilterOnProviderState(string providerState);
+        IExtendable FilterOnDescription(string description);
+        IExtendable ClearFilters();
+    }
+
     [SuppressMessage("ReSharper", "UseStringInterpolation")]
-    public class Stub : IDisposable
+    public class Stub : IExtendable
     {
         private readonly ILogger _logger;
         private bool _matchBody;
         private IWebServer _webServer;
         private string _pact;
         private readonly int _port;
+        private string _providerState;
+        private string _description;
         private int _echoStatus;
 
-        public Stub(int port)
+        private Stub(int port)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
             var logDirectory = Path.Combine(currentDirectory, "stub");
@@ -72,7 +81,7 @@ namespace seek.automation.stub
             return this;
         }
 
-        public IDisposable FromPactbroker(string pactBrokerUrl, bool matchBody = true)
+        public IExtendable FromPactbroker(string pactBrokerUrl, bool matchBody = true)
         {
             _logger.Information("Load the pact file from the broker...");
 
@@ -102,7 +111,7 @@ namespace seek.automation.stub
         {
             _logger.Information("Pact simulation on port {0}...", port);
 
-            var regRes = Helper.PactRegistration(_pact, listenerContext, _matchBody);
+            var regRes = Helper.PactRegistration(_pact, listenerContext, _providerState, _description, _matchBody);
 
             return regRes;
         }
@@ -146,6 +155,28 @@ namespace seek.automation.stub
         public void Dispose()
         {
             _webServer.Dispose();
+        }
+
+        public IExtendable FilterOnProviderState(string providerState)
+        {
+            _providerState = providerState;
+
+            return this;
+        }
+
+        public IExtendable FilterOnDescription(string description)
+        {
+            _description = description;
+
+            return this;
+        }
+
+        public IExtendable ClearFilters()
+        {
+            _providerState = string.Empty;
+            _description = string.Empty;
+
+            return this;
         }
     }
 }
