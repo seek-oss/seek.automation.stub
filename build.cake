@@ -98,7 +98,7 @@ Task("Create-Nuget-Package")
 								Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
 								ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),
 								Copyright					= "Copyright 2015",
-								ReleaseNotes				= new [] {"Integration", "Pact"},
+								ReleaseNotes				= new [] {"Please see below:" , releaseNotes.Notes},
 								Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
 								RequireLicenseAcceptance	= false,        
 								Files						= new [] {
