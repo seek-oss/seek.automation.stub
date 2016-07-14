@@ -28,9 +28,9 @@ namespace seek.automation.stub.tests.Helpers
                     {
                         var response = context.Response;
 
-                        byte[] buffer = System.Text.Encoding.UTF8.GetBytes(json);
+                        var buffer = System.Text.Encoding.UTF8.GetBytes(json);
                         response.ContentLength64 = buffer.Length;
-                        System.IO.Stream output = response.OutputStream;
+                        var output = response.OutputStream;
                         output.Write(buffer, 0, buffer.Length);
                     }
                     catch (Exception ex)

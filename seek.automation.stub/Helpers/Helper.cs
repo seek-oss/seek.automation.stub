@@ -81,7 +81,7 @@ namespace seek.automation.stub.Helpers
         private static bool RequestPathMatches(HttpListenerRequest request, ProviderServiceInteraction providerServiceInteraction)
         {
             // Compare base url
-            bool baseUrlMatches = string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path, StringComparison.OrdinalIgnoreCase) == 0;
+            var baseUrlMatches = string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path, StringComparison.OrdinalIgnoreCase) == 0;
 
             if (baseUrlMatches)
             {

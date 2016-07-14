@@ -93,7 +93,7 @@ Task("Create-Nuget-Package")
 								Version						= version,
 								Title						= "SEEK Pact Based Stub Library",
 								Authors						= new[] {"Behdad Darougheh"},
-								Owners						= new[] {"SEEK"},
+								Owners						= new[] {"SEEK", "Behdad Darougheh"},
 								Description					= projectDescription,
 								Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
 								ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),

@@ -4,7 +4,7 @@
     <id></id>
     <version></version>
     <authors>Behdad Darougheh</authors>
-    <owners>SEEK</owners>
+    <owners>SEEK, Behdad Darougheh</owners>
     <summary>A pact based stubbing library</summary>
     <projectUrl>https://github.com/SEEK-Jobs/seek.automation.stub</projectUrl>
     <requireLicenseAcceptance></requireLicenseAcceptance>
