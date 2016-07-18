@@ -1,3 +1,6 @@
+### New in 0.1.0 (Released 2016/07/14)
+* Fix the dependency issue by setting the Newtonsoft.Json to 9.0.1
+
 ### New in 0.0.9 (Released 2016/07/14)
 * Enhanced to add the ability to filter based on the provider_state and description properties of an interaction
 * Enhanced to allow clearing of the filters
