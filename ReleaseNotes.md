@@ -1,3 +1,6 @@
+### New in 0.1.1 (Released 2016/07/20)
+* Fix an issue where if the request's body was JSON array, the library was throwing exception
+
 ### New in 0.1.0 (Released 2016/07/14)
 * Fix the dependency issue by setting the Newtonsoft.Json to 9.0.1
 

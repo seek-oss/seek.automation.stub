@@ -111,11 +111,18 @@ namespace seek.automation.stub.Helpers
                 using (var reader = new StreamReader(bodyInputStream, request.ContentEncoding))
                 {
                     var body = reader.ReadToEnd();
-                    return request.ContentType == "application/json; charset=utf-8" ? JObject.Parse(body).ToString() : body;
+                    
+                    if ((request.ContentType != null)  && (request.ContentType.Contains("application/json")))
+                    {
+                        JsonConvert.DeserializeObject(body);
+                        return body;
+                    }
+
+                    throw new Exception("Currently only content type of application/json is supported");
                 }
             }
         }
-
+        
         private static string ApplyStaticRules(string str)
         {
             var random = new Random();

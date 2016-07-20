@@ -15,7 +15,7 @@ namespace seek.automation.stub.tests.UsageTests
         {
             var dad = Stub.Create(9000).Echo(202);
             
-            var response = DoHttpPost("/anything/anyway/", "{ A = \"foo\", B = \"bar\" }");
+            var response = DoHttpPost("/anything/anyway/", "{ A : \"foo\", B : \"bar\" }");
 
             dad.Dispose();
 
