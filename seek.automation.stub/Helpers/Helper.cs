@@ -4,6 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using Nancy.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -67,7 +69,7 @@ namespace seek.automation.stub.Helpers
 
                     var content = providerServiceInteraction.Response.Body == null ? string.Empty : providerServiceInteraction.Response.Body.ToString();
                     response.Content = new StringContent(ApplyStaticRules(content));
-
+                    
                     return response;
                 }
             }

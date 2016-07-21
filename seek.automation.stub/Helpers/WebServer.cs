@@ -60,6 +60,9 @@ namespace seek.automation.stub.Helpers
                         var response = CallbackMethod(port, httpListenerContext);
 
                         httpListenerContext.Response.StatusCode = (int)response.StatusCode;
+
+                        httpListenerContext.Response.Headers.Add(HttpResponseHeader.ContentType, "application/json");
+
                         var content = response.Content != null ? response.Content.ReadAsStringAsync().Result : null;
 
                         if (!string.IsNullOrEmpty(content))
