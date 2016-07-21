@@ -51,7 +51,7 @@ namespace seek.automation.stub
             return stub;
         }
 
-        public IDisposable FromJson(string pact, bool matchBody = true)
+        public IExtendable FromJson(string pact, bool matchBody = true)
         {
             _logger.Information("Loading the pact from the pact string...");
 
@@ -65,7 +65,7 @@ namespace seek.automation.stub
             return this;
         }
 
-        public IDisposable FromFile(string pactFilePath, bool matchBody = true)
+        public IExtendable FromFile(string pactFilePath, bool matchBody = true)
         {
             _logger.Information("Loading the pact from the pact file...");
 

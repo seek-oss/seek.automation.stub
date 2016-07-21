@@ -1,6 +1,7 @@
 ### New in 0.1.1 (Released 2016/07/20)
-* Fix an issue where if the request's body was JSON array, the library was throwing exception
-* Set the response header for Content-type to be application/Json
+* Issue: fixed the problem where if the request's body was JSON array, the library was throwing exception
+* Issue: fixed the problem where some clients were getting no media formatter specified error
+* Issue: fixed the problem where the filter methods were not available if the FromJson and FromFile methods were used
 
 ### New in 0.1.0 (Released 2016/07/14)
 * Fix the dependency issue by setting the Newtonsoft.Json to 9.0.1
