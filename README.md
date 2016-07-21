@@ -113,6 +113,8 @@ You can also clear the filters at anytime:
 fakeService.ClearFilters();
 ```
 
+>**Warning: Please do not use the filters if you expect multiple interactions in any run. Since the filter will apply to all of the interactions for that service.
+
 ## Authentication Workaround
 At times you might encounter scenarios where the request contains authentication tokens. This library automatically
 removes the following tokens:
