@@ -365,7 +365,7 @@ namespace My.Test.Name.Space
 
 So as you see, the above does nothing but only generate the contract using the Pact.net and the SUT types(e.g UserProfile).
 
-Now when you write your provider tests for SUT for C1, if you load the pacts for P1 and P2, then as the C1 provider tests run, it will exercise the SUT classes without any mocks and as it was running on a production environment.
+Now when you write your provider tests for SUT for C1, if you load the pacts for P1 and P2 using this stubbing library, then as the C1 provider tests run, it will exercise the SUT classes without any mocks and as it was running on a production environment.
 
 ## Future Improvements
 
