@@ -227,17 +227,17 @@ Then when we are writing the provider tests for the same service, then we spin u
 Now consider the following service:
 
 ```
-               +---------------------+
-               |                     |
-               |                     |
-               |                     |-----------> Provider P1
-               |       Service       |
-Consumer C1--->|        Under        |
-			   |       Test(SUT)     |
-			   |                     |-----------> Provider P2
-			   |                     |
-			   |                     |
-			   +---------------------+
+                       +---------------------+
+                       |                     |
+                       |                     |
+                       |                     |-----------> Provider P1
+                       |       Service       |
+Consumer C1----------->|        Under        |
+			           |       Test(SUT)     |
+			           |                     |-----------> Provider P2
+			           |                     |
+			           |                     |
+			           +---------------------+
 
 ```
 
