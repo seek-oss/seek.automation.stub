@@ -310,7 +310,8 @@ namespace My.Test.Name.Space
 }
 ```
 
-To use the above, you can do something similar:
+To use the above, you can do something similar to below, but of-course you can register multiple interactions using the RegisterInteraction
+method:
 
 ```csharp
 using System.Collections.Generic;
@@ -362,7 +363,7 @@ namespace My.Test.Name.Space
 }
 ```
 
-So as you see, the above does nothing but only generate the contract using the Pact.net and the SUT types.
+So as you see, the above does nothing but only generate the contract using the Pact.net and the SUT types(e.g UserProfile).
 
 Now when you write your provider tests for SUT for C1, if you load the pacts for P1 and P2, then as the C1 provider tests run, it will exercise the SUT classes without any mocks and as it was running on a production environment.
 
