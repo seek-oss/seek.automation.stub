@@ -1,3 +1,6 @@
+### New in 0.1.2 (Released 2016/08/31)
+* Nothing major. Only updated the readme file to add a new section called Pact + Stub
+
 ### New in 0.1.1 (Released 2016/07/20)
 * Issue: fixed the problem where if the request's body was JSON array, the library was throwing exception
 * Issue: fixed the problem where some clients were getting no media formatter specified error
