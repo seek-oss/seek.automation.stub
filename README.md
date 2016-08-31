@@ -218,6 +218,154 @@ Then the response that comes back everytime will have different values for the a
 }
 ```
 
+## Pact + Stub
+When using stub, you can approach pact testing in a slightly different light. 
+Currently when generating the pacts as a consumer on a service, we spin up a mock server program it with interactions, exercise those interactions and as the result the pact file gets generated.
+
+Then when we are writing the provider tests for the same service, then we spin up the service mocking some of the dependencies. This means that not the whole code gets exercised depending on level of mocking. Also some bugs that could lie in the serialiser may not get picked up.
+
+Now consider the following service:
+
+```
+               +---------------------+
+               |                     |
+               |                     |
+               |                     |-----------> Provider P1
+               |       Service       |
+Consumer C1--->|        Under        |
+			   |       Test(SUT)     |
+			   |                     |-----------> Provider P2
+			   |                     |
+			   |                     |
+			   +---------------------+
+
+```
+
+The above service is a provider to C1 and the consumer of services P1 and P2. 
+To simplify the process of pact testing you can **generate** two pacts one for P1 and one for P2. This generation process is actually very simple. You can inherit from the class below which uses Pact.Net classes to register interactions and generate your pact files:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using PactNet.Mocks.MockHttpService.Models;
+using PactNet.Models;
+
+namespace My.Test.Name.Space
+{
+    public class TestSetup : IDisposable
+    {
+        private readonly string _consumer;
+        private readonly string _provider;
+        private readonly string _pactDirectory;
+        private readonly List<ProviderServiceInteraction> _interactions;
+
+        public TestSetup(string consumer, string provider, string pactDirectory = "pacts")
+        {
+            _consumer = consumer;
+            _provider = provider;
+            _pactDirectory = pactDirectory;
+            _interactions = new List<ProviderServiceInteraction>();
+
+            if (_pactDirectory == null) _pactDirectory = Directory.GetCurrentDirectory();
+            Directory.CreateDirectory(_pactDirectory);
+        }
+
+        public void RegisterInteraction(params ProviderServiceInteraction[] interactions)
+        {
+            _interactions.AddRange(interactions);
+        }
+
+        private void GeneratePactFile()
+        {
+            var pact = new ProviderServicePactFile
+            {
+                Consumer = new Pacticipant { Name = _consumer },
+                Provider = new Pacticipant { Name = _provider },
+                Interactions = _interactions
+            };
+
+            var pactDetails = (PactDetails)pact;
+
+            var serializedPact = JsonConvert.SerializeObject(pactDetails, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Converters = new List<JsonConverter> { new StringEnumConverter { CamelCaseText = true } },
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
+            File.WriteAllText(Path.Combine(_pactDirectory, pactDetails.GeneratePactFileName()), serializedPact, Encoding.UTF8);
+        }
+
+        public void Dispose()
+        {
+            GeneratePactFile();
+        }
+    }
+}
+```
+
+To use the above, you can do something similar:
+
+```csharp
+using System.Collections.Generic;
+using System.Net;
+using PactNet.Mocks.MockHttpService.Models;
+using Xunit;
+
+namespace My.Test.Name.Space
+{
+    public class ProviderP1Contract : TestSetup
+    {
+        public ProviderP1Contract() : base("SUT", "P1")
+        {
+        }
+
+        [Fact]
+        public void Create_Pact_For_Sut()
+        {
+            RegisterInteraction(Default_Sut_Interaction());
+        }
+
+        public ProviderServiceInteraction Default_Sut_Interaction()
+        {
+            return new ProviderServiceInteraction
+            {
+                ProviderState = "Given there is a user with Id 1",
+                Description = "A request for info for user with Id 1",
+                Request = new ProviderServiceRequest
+                {
+                    Method = HttpVerb.Post,
+                    Path = "/v1/profile/1",
+                    Headers = new Dictionary<string, string>
+                    {
+                        {"Accept", "application/json"}
+                    }
+                },
+                Response = new ProviderServiceResponse
+                {
+                    Status = (int)HttpStatusCode.OK,
+                    Headers = new Dictionary<string, string>
+                    {
+                        {"Content-Type", "application/json; charset=utf-8"}
+                    },
+                    Body = new UserProfile { id = 1,  name = "Joe" }
+                }
+            };
+        }
+    }
+}
+```
+
+So as you see, the above does nothing but only generate the contract using the Pact.net and the SUT types.
+
+Now when you write your provider tests for SUT for C1, if you load the pacts for P1 and P2, then as the C1 provider tests run, it will exercise the SUT classes without any mocks and as it was running on a production environment.
+
 ## Future Improvements
 
 Some minor point(s) to keep in mind:
