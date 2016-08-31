@@ -310,7 +310,7 @@ namespace My.Test.Name.Space
 }
 ```
 
-To use the above, you can do something similar to below, but of-course you can register multiple interactions using the RegisterInteraction
+To use the above, you can do something similar to below, but of-course you can register multiple interactions, using the RegisterInteraction
 method:
 
 ```csharp
