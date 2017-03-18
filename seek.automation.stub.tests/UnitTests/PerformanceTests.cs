@@ -3,8 +3,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
-using seek.automation.stub.tests.Helpers;
+using System.Threading;
 using FluentAssertions;
+using seek.automation.stub.tests.Helpers;
 using Xunit;
 
 namespace seek.automation.stub.tests.UnitTests
@@ -76,7 +77,7 @@ namespace seek.automation.stub.tests.UnitTests
             var fakeLapStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
             var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
 
-            performance.Run(() => { System.Threading.Thread.Sleep(1);}, 10);
+            performance.Run(() => { Thread.Sleep(1);}, 10);
 
             fakePactBroker.Dispose();
 
@@ -93,7 +94,7 @@ namespace seek.automation.stub.tests.UnitTests
             var fakeLapStopWatch = new FakeStopWatch { Elapsed = new TimeSpan(0, 0, 0, 1234) };
             var performance = new Performance(FakePactBrokerUrl, fakeStopWatch, fakeLapStopWatch);
 
-            performance.Run(() => { System.Threading.Thread.Sleep(1); }, 10);
+            performance.Run(() => { Thread.Sleep(1); }, 10);
 
             fakePactBroker.Dispose();
             

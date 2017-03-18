@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using Xunit;
-using FluentAssertions;
 using System.Net;
+using FluentAssertions;
+using Xunit;
 
 namespace seek.automation.stub.tests.UsageTests
 {

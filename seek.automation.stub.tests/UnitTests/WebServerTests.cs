@@ -1,10 +1,10 @@
 ﻿using System;
 using FluentAssertions;
-using seek.automation.stub.Helpers;
-using Xunit;
 using NSubstitute;
 using RestSharp;
+using seek.automation.stub.Helpers;
 using Serilog;
+using Xunit;
 
 namespace seek.automation.stub.tests.UnitTests
 {

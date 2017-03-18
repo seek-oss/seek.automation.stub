@@ -1,6 +1,6 @@
-﻿using Xunit;
+﻿using System.Net;
 using FluentAssertions;
-using System.Net;
+using Xunit;
 
 namespace seek.automation.stub.tests.UsageTests
 {

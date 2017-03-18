@@ -4,11 +4,9 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
+using System.Text;
 using Nancy.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PactNet;
 using PactNet.Mocks.MockHttpService.Models;
 
@@ -35,7 +33,7 @@ namespace seek.automation.stub.Helpers
             var myResponse = myRequest.GetResponse();
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            var sr = new StreamReader(myResponse.GetResponseStream(), System.Text.Encoding.UTF8);
+            var sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
             var result = sr.ReadToEnd();
             sr.Close();
             myResponse.Close();
