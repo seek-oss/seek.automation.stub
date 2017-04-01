@@ -104,3 +104,8 @@ Write-Host "Running build script..."
 Invoke-Expression "$CAKE_EXE `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`""
 
 exit $LASTEXITCODE
+
+
+
+
+
