@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("seek.automation.stub")]
 [assembly: AssemblyDescription("A library to allow stubbing of services while building integration or pact automated tests.")]
 [assembly: AssemblyProduct("seek.automation.stub")]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("0.2.2.0")]
+[assembly: AssemblyFileVersion("0.2.2.0")]
 [assembly: Guid("4dd5b14a-ef02-4ce0-9c33-52a4a4ea05f5")]
 

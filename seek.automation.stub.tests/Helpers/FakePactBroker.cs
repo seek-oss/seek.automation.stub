@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace seek.automation.stub.tests.Helpers
@@ -28,7 +29,7 @@ namespace seek.automation.stub.tests.Helpers
                     {
                         var response = context.Response;
 
-                        var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+                        var buffer = Encoding.UTF8.GetBytes(json);
                         response.ContentLength64 = buffer.Length;
                         var output = response.OutputStream;
                         output.Write(buffer, 0, buffer.Length);
