@@ -19,7 +19,7 @@ Setup(context =>
 				}
 
 				CreateDirectory(nugetDir);
-		
+
 				NuGetInstall("xunit.runner.console", new NuGetInstallSettings {
 										ExcludeVersion  = true,
 										OutputDirectory = "./tools"
@@ -51,9 +51,9 @@ Task("Restore-NuGet-Packages")
 
 Task("AssemblyInfo")
     .IsDependentOn("Restore-NuGet-Packages")
-	.Does(() => 
+	.Does(() =>
 		{
-			CreateAssemblyInfo(string.Format("{0}/Properties/AssemblyInfo.cs", projectName), new AssemblyInfoSettings  
+			CreateAssemblyInfo(string.Format("{0}/Properties/AssemblyInfo.cs", projectName), new AssemblyInfoSettings
 			{
 				Title = projectName,
 				Description = projectDescription,
@@ -95,19 +95,19 @@ Task("Create-Nuget-Package")
 								Authors						= new[] {"Behdad Darougheh"},
 								Owners						= new[] {"SEEK", "Behdad Darougheh"},
 								Description					= projectDescription,
-								Summary						= "Try stubbing the dependent services instead of mocking...you might like it.", 
+								Summary						= "Try stubbing the dependent services instead of mocking...you might like it.",
 								ProjectUrl					= new Uri("https://github.com/SEEK-Jobs/seek.automation.stub"),
 								Copyright					= "Copyright 2015",
 								ReleaseNotes				= new [] {"Please see below, the notes for the last release:", Environment.NewLine , String.Join(Environment.NewLine, releaseNotes.Notes).ToString()},
 								Tags						= new [] {"StubLib", "PactAutomation", "Integration", "Consumer Driven Contract"},
-								RequireLicenseAcceptance	= false,        
+								RequireLicenseAcceptance	= false,
 								Files						= new [] {
 																		new NuSpecContent {Source = string.Format("bin/release/{0}.dll", projectName), Target = "lib/net45"},
 																	 },
-								BasePath					= string.Format("{0}/", projectName), 
+								BasePath					= string.Format("{0}/", projectName),
 								OutputDirectory				= nugetDir
 							};
-                
+
 					NuGetPack(string.Format("{0}.nuspec", projectName), nuGetPackSettings);
 				}
 			);
