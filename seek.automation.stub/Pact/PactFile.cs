@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using PactNet.Models;
 
-namespace PactNet.Models
+namespace seek.automation.stub.Pact
 {
     public class PactFile : PactDetails
     {

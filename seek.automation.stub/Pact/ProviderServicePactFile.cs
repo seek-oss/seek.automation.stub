@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using PactNet.Models;
+using PactNet.Mocks.MockHttpService.Models;
 
-namespace PactNet.Mocks.MockHttpService.Models
+namespace seek.automation.stub.Pact
 {
     public class ProviderServicePactFile : PactFile
     {

@@ -9,6 +9,7 @@ using Nancy.Helpers;
 using Newtonsoft.Json;
 using PactNet;
 using PactNet.Mocks.MockHttpService.Models;
+using seek.automation.stub.Pact;
 
 namespace seek.automation.stub.Helpers
 {
