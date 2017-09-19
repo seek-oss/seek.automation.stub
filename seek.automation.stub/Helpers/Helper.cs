@@ -81,17 +81,17 @@ namespace seek.automation.stub.Helpers
         private static bool RequestPathMatches(HttpListenerRequest request, ProviderServiceInteraction providerServiceInteraction)
         {
             // Compare base url
-            var baseUrlMatches = string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path, StringComparison.OrdinalIgnoreCase) == 0;
+            var baseUrlMatches = string.Compare(request.Url.LocalPath, providerServiceInteraction.Request.Path?.ToString(), StringComparison.OrdinalIgnoreCase) == 0;
 
             if (baseUrlMatches)
             {
                 // Compare query string
                 if (string.IsNullOrEmpty(request.Url.Query))
                 {
-                    return string.IsNullOrEmpty(providerServiceInteraction.Request.Query);
+                    return string.IsNullOrEmpty(providerServiceInteraction.Request.Query?.ToString());
                 }
 
-                var currentPactQuery = HttpUtility.ParseQueryString(providerServiceInteraction.Request.Query ?? "");
+                var currentPactQuery = HttpUtility.ParseQueryString(providerServiceInteraction.Request.Query?.ToString() ?? "");
                 var currentQuery = HttpUtility.ParseQueryString(request.Url.Query);
                 var isCurrentPactQueryTheSameAsCurrentRequestQuery = currentPactQuery.FilterCollection().CollectionEquals(currentQuery.FilterCollection());
                 return isCurrentPactQueryTheSameAsCurrentRequestQuery;
