@@ -1,5 +1,6 @@
 ### New in 0.2.3 (Released 2017/09/19)
 * Updated so that it works with Pact.net 2.x.x since the new version is using ruby based Pact
+* Updated the .Net framework to 4.6
 
 ### New in 0.2.2 (Released 2017/03/19)
 * Fixed compile issue by adding the package System.Net.Http.Formatting.Extension
