@@ -8,6 +8,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using PactNet.Mocks.MockHttpService.Models;
 using PactNet.Models;
+using seek.automation.stub.Pact;
 
 namespace seek.automation.stub.Helpers
 {
@@ -55,7 +56,7 @@ namespace seek.automation.stub.Helpers
 
             foreach (var interaction in pactFile.Interactions)
             {
-                var body = _transformer(interaction.Request.Path, interaction.Request.Body.ToObject<T>());
+                var body = _transformer(interaction.Request.Path.ToString(), interaction.Request.Body.ToObject<T>());
 
                 interaction.Request.Path = redirectPath;
 
